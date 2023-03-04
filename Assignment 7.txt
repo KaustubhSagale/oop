@@ -1,0 +1,153 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+/*
+Name:  Kaustubh Sagale
+Roll number: 27051
+Batch:      SE-IT-B
+
+*/
+public class Generics_27051{
+	static int count=0;
+	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Generics Program");
+		System.out.println("1.Integer\n2.String\n");
+		System.out.println("Enter your Choice");
+		int ch = scan.nextInt();
+		if(ch==1)
+		{
+			number();
+		}
+		else
+		{
+			str();
+		}
+	}
+
+	static void number() 
+	{
+		int element,n,choice;
+		Scanner s=new Scanner(System.in);
+		ArrayList<Integer>nums=new ArrayList<Integer>();
+		System.out.println("Enter the number of elemnts");
+		n=s.nextInt();
+		System.out.println("Enter the elements");
+		for(int i=0;i<n;i++)
+		{
+			element=s.nextInt();
+			nums.add(element);
+		}
+		System.out.println("Elements are "+nums);
+		System.out.println("Enterthe opertation you want to perform on Integers ");
+		System.out.println("1.1 Odd or Even");
+		System.out.println("1.2 Prime or Not");
+		choice=s.nextInt();
+		Iterator itr=nums.iterator();
+		count=0;
+		while(itr.hasNext())
+		{
+			check(choice,(int)itr.next());
+		}
+		if(choice==1)
+		{
+			System.out.println("The count of even number is "+count);
+			System.out.println("The count of odd number is "+(nums.size()-count));
+		}
+		else
+		{
+			System.out.println("The count of Prime Number is "+count);
+		}
+	}
+	static void check(int ch,int x)
+	{
+		switch(ch)
+		{
+		case 1:
+			even_odd(x);
+			break;
+		case 2:
+			prime(x);
+			break;
+		default:
+			System.out.println("Invlid Input!");
+		}
+	}
+	static void even_odd(int x)
+	{
+		if(x%2==0)
+		{
+			System.out.println(x+"\t is Even");
+			count=count+1;
+		}
+		else
+		{
+			System.out.println(x+"\t is Odd");
+		}
+	}
+	static void prime(int x)
+	{
+		int t,p=0;
+		for(t=2;t<(x-1);t++)
+		{
+			if(x%t==0)
+			{
+				p=1;
+				
+			}
+			
+		}
+		if(p==1)
+		{
+			System.out.println(x+"\t not a Prime Number");
+		}
+		else
+		{
+			System.out.println(x+"\t is a Prime Number");
+			count=count+1;
+		}
+	}
+	static void str()
+	{
+		String z=new String();
+		int q,j;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Your String");
+		z=sc.nextLine();
+		System.out.println("Your String is "+z);
+		System.out.println("Enter the opertation you want to perform on String ");
+		System.out.println("1.1 Palindrome or not");
+		q=sc.nextInt();
+		chk(q,z);
+		
+	}
+	static void chk(int q, String z)
+	{
+		switch(q)
+		{
+			case 1:
+				palindrome(z);
+				break;
+			default:
+				System.out.println("Invalid Input!");
+				break;
+		}
+	}
+	static void palindrome(String z)
+	{
+		String q="";
+		for(int i=(z.length()-1);i>=0;i--)
+		{
+			q=q+z.charAt(i);
+		}
+		
+		if(z.equals(q))
+		{
+			System.out.println(z+"\tis Palindrome");
+		}
+		else
+		{
+			System.out.println(z+"\tis not Palindrome");
+		}
+	}
+}

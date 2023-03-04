@@ -1,0 +1,48 @@
+import java.util.*;
+/*Name: Kaustubh Sagale
+  Roll Number: 27051
+  SE-IT-B
+*/
+public class Main {
+	public static class ComplexNumber_27051{
+    	double real;
+        double imag;
+        
+        ComplexNumber_27051(){}
+        ComplexNumber_27051(double real,double imag){
+        	this.real = real;
+            this.imag = imag;
+        }
+    }
+    public static ComplexNumber_27051 sum(ComplexNumber_27051 a, ComplexNumber_27051 b){
+    	ComplexNumber_27051 ans = new ComplexNumber_27051();
+        ans.real = a.real + b.real;
+        ans.imag = a.imag + b.imag;
+        return ans;
+     }
+  public static void main(String[] args) {
+        /*
+        ComplexNumber_27051 c1 = new ComplexNumber_27051(3,5);
+        ComplexNumber_27051 c2 = new ComplexNumber_27051(4,6);
+        
+        ComplexNumber ans = sum(c1,c2);
+        System.out.println("The addition of two complex numbers is : "+ans.real+" + "+ans.imag+"i");
+        
+       */
+        Scanner sc= new Scanner(System.in); 
+        ComplexNumber_27051 num1 = new ComplexNumber_27051();
+        ComplexNumber_27051 num2 = new ComplexNumber_27051();
+        System.out.println("Enter first complex number: \nreal: ");
+        num1.real = sc.nextDouble();
+        System.out.println("\nimag: ");
+        num1.imag = sc.nextDouble();
+        System.out.println("Enter second complex number: \nreal: ");
+        num2.real = sc.nextDouble();
+        System.out.println("\nimag: ");
+        num2.imag = sc.nextDouble();
+        
+        ComplexNumber_27051 answer = sum(num1,num2);
+        System.out.println("The addition of two complex number is : "+answer.real+" + "+answer.imag+"i");
+    
+  }
+}

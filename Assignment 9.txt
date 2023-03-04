@@ -1,0 +1,208 @@
+/*****************************Assignment #7 Generics*****************************/
+/*
+    Name = Kaustubh Sagale
+    Roll No = 27051
+    Class = SE IT B
+    Batch = C
+
+					Problem Statement: 
+    Using concepts of Object Oriented programming develop solution for any one application 
+        1)	Banking solution contains following operations such as 
+            1.	Create an account 
+            2.	Deposit money 
+            3.	Withdraw money (Honor daily withdrawal limit)   
+            4.	Check the balance 
+            5.	Display Account information.  
+        2)	Inventory management contains following operations such as 
+            1.	List of all products 
+            2.	Display individual  product information 
+            3.	Purchase 
+            4.	Shipping 
+            5.	Balance stock 
+            6.	Loss and Profit calculation.
+*/
+import java.util.Scanner;
+class Account_27051 {
+    private double balance;
+    private String Name;
+    private int age, accountID, withdrawlLimit;
+    private long mobileNo;
+
+    public int getwithdrawlLimit() {
+        return withdrawlLimit;
+    }
+
+    public void setwithdrawlLimit(int withdrawlLimit) {
+        this.withdrawlLimit = withdrawlLimit;
+    }
+
+    public int getaccoutID() {
+        return accountID;
+    }
+
+    public void setaccoutID(int accountID) {
+        this.accountID = accountID;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public long getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(long mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+}
+
+public class Main{
+    static Scanner scan = new Scanner(System.in);
+
+    static Account_27051 createAccount(){
+        Account_27051 account = new Account_27051();
+        
+        System.out.print("\n\nEnter Your Name: ");
+        account.setName(scan.next());
+
+        System.out.print("\nEnter Your Age: ");
+        int age = scan.nextInt();
+        while(age < 18){
+            System.out.println("\nMinimum age should be 18 to create an account.");
+            System.out.print("Please enter valid age: ");
+            age = scan.nextInt();
+        }
+        account.setAge(age);
+
+        System.out.print("\nEnter Your Mobile No.: ");
+        account.setMobileNo(scan.nextLong());
+
+        System.out.print("\nEnter Account ID No.: ");
+        account.setaccoutID(scan.nextInt());
+
+        System.out.print("\nEnter Balance: ");
+        account.setBalance(scan.nextDouble());
+
+        System.out.print("\nEnter Daily WIthdrawl Limit: ");
+        account.setwithdrawlLimit(scan.nextInt());
+
+        return account;
+    }
+
+    static void depositMoney(Account_27051 account){
+        System.out.print("\n\nEnter the Amount You want to Enter: ");
+        account.setBalance(account.getBalance() + scan.nextInt());
+        System.out.println("Money Deposited.");
+    }
+
+    static void withdrawMoney(Account_27051 account){
+        double amount = 0;
+        System.out.print("\n\nEnter the Amount You want to Withdraw: ");
+        amount = scan.nextDouble();
+
+        while((account.getwithdrawlLimit() < amount) || (account.getBalance() < amount)){
+                System.out.println("\nEnter Appropriate Money Within Limit.");
+                System.out.print("\nEnter the Amount You want to Withdraw: ");
+                amount = scan.nextDouble();
+        }
+
+        account.setwithdrawlLimit((int) (account.getwithdrawlLimit() - amount));
+        account.setBalance(account.getBalance() - amount);
+        System.out.println("Money Withdrawn.");
+    }
+
+    static void checkBalance(Account_27051 account){
+        System.out.println("\n\nYour Account Balance:" + account.getBalance());
+    }
+
+    static void displayAccountInformation(Account_27051 account){
+        System.out.println("\n\nAccount User Name: " + account.getName());
+        System.out.println("User Age: " + account.getAge());
+        System.out.println("User Account ID No.: " + account.getaccoutID());
+        System.out.println("User Mobile No.: " + account.getMobileNo());
+        System.out.println("User Account Balance: " + account.getBalance());
+        System.out.println("Today's Remaining withdrawn limit: " + account.getwithdrawlLimit());
+    }
+
+    public static void main(String[] args){
+        Account_27051 account = null;
+        boolean loop = true;
+        int choice;
+
+        while(loop){
+            System.out.println("\n\n*******************MENU*******************");
+            System.out.println("1.  Create an account");
+            System.out.println("2.  Deposit money");
+            System.out.println("3.  Withdraw money");
+            System.out.println("4.  Check the balance");
+            System.out.println("5.  Display Account information");
+            System.out.println("6.  Exit");
+            System.out.print("Enter your Choice: ");
+            choice = scan.nextInt();
+
+
+            switch(choice){
+                case 1:
+                    account = createAccount();
+                    break;
+
+                case 2:
+                    depositMoney(account);
+                    break;
+
+                case 3:
+                    withdrawMoney(account);
+                    break;
+
+                case 4:
+                    checkBalance(account);
+                    break;
+
+                case 5:
+                    displayAccountInformation(account);
+                    break;
+                
+                case 6:
+                    loop = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice..");
+            }
+
+            if(loop){
+                System.out.print("Do you want to perform more actions? (1 for Yes/0 for No): ");
+                int check = scan.nextInt();
+                if(check == 0){
+                    loop = false;
+                }else if(check != 1){
+                    System.out.println("Invalid choice..");
+                    System.out.println("default choice Selected: 1");
+                }
+            }
+        }
+        
+        System.out.println("Exiting...");
+    }
+}
